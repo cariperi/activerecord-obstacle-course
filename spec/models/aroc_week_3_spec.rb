@@ -9,11 +9,8 @@ describe 'ActiveRecord Obstacle Course, Week 3' do
 # Here are the docs associated with ActiveRecord queries: http://guides.rubyonrails.org/active_record_querying.html
 
 # ----------------------
-
-
   it '16. returns the names of users who ordered one specific item' do
     expected_result = [@user_2.name, @user_3.name, @user_1.name]
-
     # ----------------------- Using Raw SQL-----------------------
     # users = ActiveRecord::Base.connection.execute("
     #   select
@@ -27,7 +24,7 @@ describe 'ActiveRecord Obstacle Course, Week 3' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    users = User.joins(:order_items).where("order_items.item_id = #{@item_8.id}").distinct.pluck(:name)
+    users = User.joins(:orders, :order_items).where("order_items.item_id = #{@item_8.id}").distinct.pluck(:name)
     # users = User.joins(:order_items).where(order_items: {item_id: @item_8.id}).distinct.pluck(:name)
     # users = User.joins(:order_items).where(order_items: { item_id: @item_8.id }).distinct.order(:name).pluck(:name)
     # ------------------------------------------------------------
