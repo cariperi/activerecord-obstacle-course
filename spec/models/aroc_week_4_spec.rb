@@ -66,7 +66,6 @@ describe 'ActiveRecord Obstacle Course, Week 4' do
     # -----------------------------------------------------------
 
     # ------------------ Improved Solution ----------------------
-    require 'pry'; binding.pry
     # orders = Order.where(user: @user_2).joins(:order_items).where(order_items: {item_id: @item_4.id})
     orders = Order.joins(:order_items).where(user: @user_2, order_items: {item_id: @item_4.id})
     # -----------------------------------------------------------
